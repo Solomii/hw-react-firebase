@@ -25,7 +25,7 @@ function App() {
   
   const handleDelete = async (id) => {
     const todoDocRef = doc(db, "todo", id)
-    try{
+    try {
       await deleteDoc(todoDocRef)
     } catch (err) {
       console.error(err)
@@ -33,12 +33,20 @@ function App() {
   }
 
   const handleEdit = async (todo, text) => {
-  try{
+  try {
      await updateDoc(doc(db, "todo", todo.id), { text: text });
   } catch (err) {
     console.error(err)
   }
-}
+  }
+  
+  const toggleComplete = async (todo) => {
+  try {
+     await updateDoc(doc(db, "todo", todo.id), { completed: !todo.completed });
+  } catch (err) {
+    console.error(err)
+   }
+  }
   
   
   return (
@@ -53,6 +61,7 @@ function App() {
               todo={todo}
               handleDelete={handleDelete}
               handleEdit={handleEdit}
+              toggleComplete={toggleComplete}
             />
           ))}
 

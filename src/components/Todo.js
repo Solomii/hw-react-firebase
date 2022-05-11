@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export default function Todo({todo, handleDelete, handleEdit}) {
+export default function Todo({todo, handleDelete, handleEdit, toggleComplete}) {
   const [newText, setNewText] = useState(todo.text);
 
   const handleChange = (e) => {
@@ -15,10 +15,12 @@ export default function Todo({todo, handleDelete, handleEdit}) {
   return (
     <div>
       <input
+        style={{ textDecoration: todo.completed && "line-through" }}
         type="text"
         value={todo.text === "" ? newText : todo.text}
         onChange={handleChange}
       />
+      <button onClick={() => toggleComplete(todo)}>Togle</button>
       <button onClick={() => handleEdit(todo, newText)}>edit</button>
       <button onClick={() => handleDelete(todo.id)}>delete</button>
     </div>
