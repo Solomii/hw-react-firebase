@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import Title from './components/Title';
 import AddTodo from './components/AddTodo';
 import Todo from './components/Todo';
-import {collection, onSnapshot, query} from "firebase/firestore";
+import {collection, onSnapshot, query, deleteDoc, doc} from "firebase/firestore";
 
 
 import { db } from "./firebase";
@@ -12,7 +12,6 @@ function App() {
   const [todo, setTodo] = useState([]);
 
   useEffect(() => { 
-    // eslint-disable-next-line no-use-before-define
     const q = query(collection(db, "todo"));
     const unsub = onSnapshot(q, (querySnapshot) => {
       let todoArr = [];
@@ -24,7 +23,15 @@ function App() {
     return () => unsub
    }, []);
   
-
+  const handleDelete = async (id) => {
+    const todoDocRef = doc(db, 'todo', id)
+    try{
+      await deleteDoc(todoDocRef)
+    } catch (err) {
+      alert(err)
+    }
+  }
+  
   
   return (
     <div className="App">
@@ -36,6 +43,7 @@ function App() {
             <Todo
               key={todo.id}
               todo={todo}
+              handleDelete={handleDelete}
             />
           ))}
 
