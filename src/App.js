@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import Title from './components/Title';
 import AddTodo from './components/AddTodo';
 import Todo from './components/Todo';
-import {collection, onSnapshot, query, deleteDoc, doc} from "firebase/firestore";
+import {collection, onSnapshot, query, deleteDoc, doc, updateDoc} from "firebase/firestore";
 
 
 import { db } from "./firebase";
@@ -24,13 +24,21 @@ function App() {
    }, []);
   
   const handleDelete = async (id) => {
-    const todoDocRef = doc(db, 'todo', id)
+    const todoDocRef = doc(db, "todo", id)
     try{
       await deleteDoc(todoDocRef)
     } catch (err) {
-      alert(err)
+      console.error(err)
     }
   }
+
+  const handleEdit = async (todo, text) => {
+  try{
+     await updateDoc(doc(db, "todo", todo.id), { text: text });
+  } catch (err) {
+    console.error(err)
+  }
+}
   
   
   return (
@@ -44,6 +52,7 @@ function App() {
               key={todo.id}
               todo={todo}
               handleDelete={handleDelete}
+              handleEdit={handleEdit}
             />
           ))}
 
