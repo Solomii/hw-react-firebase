@@ -1,4 +1,5 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
+
 import { db } from "../firebase";
 import { collection, addDoc } from "firebase/firestore";
 
@@ -15,8 +16,9 @@ export default function AddTodo() {
       setText("")
     }
   }
+  
   return (
-    <>
+    <div className="add__todo_box">
       <form onSubmit={handleSubmit}> 
         <input
           type="text"
@@ -26,7 +28,7 @@ export default function AddTodo() {
         />
         <button>Add</button>
       </form>
-    </>
+    </div>
   )
 }
 

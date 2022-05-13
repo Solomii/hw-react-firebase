@@ -2,21 +2,18 @@ import './App.css';
 import React from 'react';
 
 import Title from './components/Title';
-import Singup from './components/Singup'
+import Signin from './components/Signin';
 
-
-import { Routes, Route } from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 
 function App() {
-  
   return (
-    <div className="App">
-     <Routes>
+    <>
+      <Routes>
         <Route path="/" element={<Title />} />
-        <Route path="/singup" element={ <Singup/>} />
+        <Route path="/singup" element={<Signin />} />
       </Routes>
-     
-    </div>
+      </>
   );
 }
 

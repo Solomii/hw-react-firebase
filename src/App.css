@@ -1,3 +1,108 @@
 .App {
-  text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.signin__page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login__registering__box {
+  padding: 20px;
+  background: lightgray;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.login__registering__box > input {
+  height: 40px;
+  outline: none;
+  margin-bottom: 10px;
+  font-size: 20px;
+  border: none;
+  border-radius: 5px;
+  border-radius: 5px;
+}
+
+.login__registering__box > button {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.sign__in__btn {
+  background: gray;
+  font-size: 15px;
+  border: none;
+}
+
+.create__account__btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.register__btn {
+  border: none;
+  font-size: 18px;
+}
+
+.go__back__btn {
+  border: none;
+  padding: 5px;
+  margin-top: 15px;
+}
+
+.todo__box {
+  margin-top: 15px;
+}
+
+.todo__box > button {
+  border: none;
+  cursor: pointer;
+  background: white;
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.todo__box > input {
+ margin-top: 20px;
+ font-size: 15px;
+ border: none;
+}
+
+.add__todo_box {
+  margin-top: 15px;
+}
+
+.add__todo_box input {
+  width: 300px;
+  height: 30px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.add__todo_box button {
+ cursor: pointer;
+ border: none;
+ background: gray;
+ height: 36px;
+}
+
+.sign__out__btn {
+  margin-top: 30px;
+  border: none;
+  padding: 10px;
+  border-radius: 10;
 }

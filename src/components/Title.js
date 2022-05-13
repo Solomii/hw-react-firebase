@@ -5,9 +5,14 @@ import Todo from './Todo';
 
 import {collection, onSnapshot, query, deleteDoc, doc, updateDoc} from "firebase/firestore";
 import { db } from "../firebase";
+import { signOut } from 'firebase/auth';
+import { auth } from "../firebase.js";
+
+import { useNavigate } from 'react-router-dom';
 
 export default function Title () {
   const [todo, setTodo] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => { 
     const q = query(collection(db, "todo"));
@@ -45,12 +50,27 @@ export default function Title () {
     console.error(err)
    }
   }
+
+   useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+       navigate("/")
+     }
+    })
+   }, [])
+
+  const handleSignOut = () => {
+    signOut(auth).then(() => {
+      navigate("/singup")
+    }).catch((err) => { alert(err.message);
+})
+}
   
   return (
     <div className="App">
-      <h1>ToDo App</h1>
+      <h1>Write to Do List</h1>
       <AddTodo />
-      <div>
+      <div className="todo__box">
         {
           todo.map((todo) => (
             <Todo
@@ -61,6 +81,9 @@ export default function Title () {
               toggleComplete={toggleComplete}
             />
           ))}
+      </div>
+      <div>
+        <button className="sign__out__btn"  onClick={handleSignOut}>sign out</button>
       </div>
     </div>
   );
