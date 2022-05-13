@@ -20,7 +20,7 @@ export default function Signin() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        navigate("/")
+        navigate("/title")
       }
     })
   }, []);
@@ -36,12 +36,12 @@ export default function Signin() {
   const hanleSignIn = (e) => {
     signInWithEmailAndPassword(auth, email, password)
     .then(() => {
-      navigate('/')
+      navigate('/title')
     })
     .catch((err) => alert(err.massage))
   }
 
-  const hanleRegister = () => {
+  const handleRegister = () => {
     if (register.password !== register.confirmPassword) {
       alert("Passwords do not match")
       return
@@ -49,7 +49,7 @@ export default function Signin() {
     
     createUserWithEmailAndPassword(auth, register.email, register.password)
     .then(() => {
-      navigate('/')
+      navigate('/title')
     })
     .catch((err) => alert(err.massage))
   }
@@ -63,7 +63,7 @@ export default function Signin() {
           <input type="email" placeholder="Enter email..." value={register.email} onChange={(e) => setRegister({ ...register, email:e.target.value})} />
           <input type="password" placeholder="Password..." value={register.password}  onChange={(e) => setRegister({ ...register, password:e.target.value})} />
           <input type="password" placeholder="Confirm password..." value={register.confirmPassword} onChange={(e) => setRegister({ ...register, confirmPassword:e.target.value})} />
-          <button className="register__btn" onClick={hanleRegister} type="submit">Register</button>
+          <button className="register__btn" onClick={handleRegister} type="submit">Register</button>
           <div>
           <button className="go__back__btn"  onClick={() => setIsRegistering(false)}>Go back</button>
          </div>

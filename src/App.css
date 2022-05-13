@@ -86,7 +86,7 @@
 }
 
 .add__todo_box input {
-  width: 300px;
+  width: 250px;
   height: 30px;
   border-top: none;
   border-left: none;
@@ -97,12 +97,23 @@
  cursor: pointer;
  border: none;
  background: gray;
- height: 36px;
+ padding: 10px;
+ border-radius: 10px;
+ margin-left: 10px;
 }
 
 .sign__out__btn {
   margin-top: 30px;
   border: none;
   padding: 10px;
-  border-radius: 10;
+  border-radius: 10px;
+  background: rgb(233, 70, 70);
+}
+
+.load__more__btn {
+  margin-top: 25px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: grey;
 }
